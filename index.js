@@ -6,6 +6,8 @@ let shop = {
         {name: "potato", price: 4, stock: 10},
         {name: "soap", price: 8, stock: 5},
     ],
+    // empty array to determine total sales
+    totalPrice: 0,
     // function to add a new product
     addProduct: function(name, price, stock){
         // adding new products by its name, price, and stock
@@ -16,6 +18,8 @@ let shop = {
         if (index < this.products.length && this.products[index].stock > 0){
             // reducing the stock
             this.products[index].stock--;
+            // adding price to total price
+            this.totalPrice += this.products[index].price
             console.log(`${this.products[index].name} sold`);
         } else {
             // when the product is not available
@@ -35,11 +39,15 @@ let shop = {
 shop.addProduct("apple", 10, 6)
 shop.addProduct("banana", 5, 6)
 shop.addProduct("ice cream", 50, 3)
+shop.addProduct("Tissue paper", 30, 3)
 // selling a product
 shop.sellProduct(1)
+shop.sellProduct(3)
 // output of available products
 for (let i = 0; i < shop.products.length; i++){
     console.log(`${i}. Product: ${shop.products[i].name}, stock: ${shop.products[i].stock}`);
 }
 // checking the stock
 shop.checkLowStock(5)
+// printing total amount of price sold
+console.log(`Total price: $${shop.totalPrice}`);
